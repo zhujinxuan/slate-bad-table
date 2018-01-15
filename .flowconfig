@@ -1,11 +1,5 @@
 [ignore]
-
-[include]
-
-[libs]
-
-[lints]
-
+.*/slate-bad-table/dist/.*
 [options]
-
-[strict]
+emoji=true
+esproposal.decorators=ignore
