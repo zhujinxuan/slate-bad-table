@@ -1,0 +1,36 @@
+document:
+  nodes:
+    - object: block
+      type: bad-table
+      nodes:
+        - object: block
+          type: bad-table-row
+          nodes:
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  isVoid: true
+                  type: image
+                - object: block
+                  type: paragraph
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "First Bad Cell"
+        - object: block
+          type: bad-table-row
+          nodes:
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  isVoid: true
+                  type: image
+                - object: block
+                  type: paragraph
+                  key: '_cursor_'
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "Second Bad Cell"
