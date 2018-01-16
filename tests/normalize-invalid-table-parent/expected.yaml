@@ -1,0 +1,17 @@
+document:
+  nodes:
+    - object: block
+      type: bigP
+      nodes: 
+      - object: block
+        type: paragraph
+        nodes:
+        - object: text
+          leaves:
+          - text: "Ebony is the cutest cat in the world"
+      - object: block
+        type: paragraph
+        nodes:
+          - object: text
+            leaves: 
+            - text: "Cat is cute"
