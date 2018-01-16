@@ -31,6 +31,19 @@ document:
                     - object: text
                       leaves: 
                         - text: "Col 1, Row 0"
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  isVoid: true
+                  type: image
+                - object: block
+                  type: paragraph
+                  key: '_cursor_after_'
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "Col 2, Row 0"
         - object: block
           type: bad-table-row
           nodes:
@@ -42,7 +55,6 @@ document:
                   type: image
                 - object: block
                   type: paragraph
-                  key: '_cursor_after_'
                   nodes: 
                     - object: text
                       leaves: 
@@ -59,3 +71,15 @@ document:
                     - object: text
                       leaves: 
                         - text: "Col 1, Row 1"
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  isVoid: true
+                  type: image
+                - object: block
+                  type: paragraph
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "Col 2, Row 1"

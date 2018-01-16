@@ -1,6 +1,12 @@
 document:
   nodes:
     - object: block
+      type: paragraph
+      nodes:
+        - object: text
+          leaves:
+            - text: "Before"
+    - object: block
       type: bad-table
       nodes:
         - object: block
@@ -10,24 +16,45 @@ document:
               type: bad-table-cell
               nodes:
                 - object: block
+                  type: paragraph
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "Before Text of First Bad Cell"
+                - object: block
                   isVoid: true
+                  key: '_anchor_'
                   type: image
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: " "
                 - object: block
                   type: paragraph
                   nodes: 
                     - object: text
                       leaves: 
-                        - text: "First Bad Cell"
+                        - text: "After Text of First Bad Cell"
             - object: block
               type: bad-table-cell
               nodes:
                 - object: block
                   isVoid: true
                   type: image
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: " "
                 - object: block
                   type: paragraph
-                  key: '_cursor_'
                   nodes: 
                     - object: text
                       leaves: 
                         - text: "Second Bad Cell"
+    - object: block
+      type: paragraph
+      key: '_focus_'
+      nodes:
+        - object: text
+          leaves:
+            - text: "After"

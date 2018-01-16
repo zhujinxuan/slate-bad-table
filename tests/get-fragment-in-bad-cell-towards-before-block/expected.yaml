@@ -1,0 +1,23 @@
+document:
+  nodes:
+    - object: block
+      type: paragraph
+      key: '_anchor_'
+      nodes:
+        - object: text
+          leaves:
+            - text: "Before"
+    - object: block
+      type: paragraph
+      nodes: 
+        - object: text
+          leaves: 
+            - text: "Before Text of First Bad Cell"
+    - object: block
+      isVoid: true
+      key: '_focus_'
+      type: image
+      nodes: 
+        - object: text
+          leaves: 
+            - text: " "
