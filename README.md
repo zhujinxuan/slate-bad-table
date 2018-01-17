@@ -15,7 +15,7 @@ npm i --save slate-bad-table
 ## Simple Usage
 ```
 import createBadTablePlugin from 'slate-bad-table';
-const pligins = [createBadTablePlugin()]
+const plugins = [createBadTablePlugin()]
 ```
 ### Arguments
  - `[typeBadTable: 'bad-table']` string for the table type
