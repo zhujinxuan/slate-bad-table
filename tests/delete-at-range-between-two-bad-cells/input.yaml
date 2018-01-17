@@ -1,0 +1,92 @@
+document:
+  nodes:
+    - object: block
+      type: bad-table
+      nodes:
+        - object: block
+          type: bad-table-row
+          nodes:
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  type: paragraph
+                  nodes: 
+                    - object: text
+                      leaves: 
+                      - text: "Table1: Before Text of First Bad Cell"
+                - object: block
+                  isVoid: true
+                  type: image
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: " "
+                - object: block
+                  type: paragraph
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "After Text of First Bad Cell"
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  isVoid: true
+                  type: image
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: " "
+                - object: block
+                  type: paragraph
+                  key: '_anchor_'
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "Second Bad Cell"
+    - object: block
+      type: paragraph
+      nodes:
+        - object: text
+          leaves:
+            - text: "After"
+    - object: block
+      type: bad-table
+      nodes:
+        - object: block
+          type: bad-table-row
+          nodes:
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  isVoid: true
+                  type: image
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: " "
+                - object: block
+                  type: paragraph
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: "After Text of First Bad Cell"
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  isVoid: true
+                  type: image
+                  nodes: 
+                    - object: text
+                      leaves: 
+                        - text: " "
+                - object: block
+                  type: paragraph
+                  key: '_focus_'
+                  nodes: 
+                    - object: text
+                      leaves: 
+                      - text: "Table2: Second Bad Cell"
