@@ -25,41 +25,41 @@ const pligins = [createBadTablePlugin()]
 
 ## Utils 
 
-### `utils.getFragmentAtRange(node: Node, range: Range): Document`
+##### `utils.getFragmentAtRange(node: Node, range: Range): Document`
 
 Customized method for copying.  The method memics the default `node.getFragmentAtRange`, but tries to avoid `bad-table*` in the returned fragment;
 
-### `utils.isSelectionInCell(value: Value): boolean`
+##### `utils.isSelectionInCell(value: Value): boolean`
 Return true if selection is inside a `bad-table-cell`
 
-### `utils.isSelectionOutOfCell`
+##### `utils.isSelectionOutOfCell`
 Return true if selection starts and ends both outside any bad table. (Notice: it is NOT the opposite value of isSelectionInCell)
 
 
 ## Changes
-### `changes.removeFragmentAtRange(change: Change, range: Range, {normalize: true}) : Change`
+##### `changes.removeFragmentAtRange(change: Change, range: Range, {normalize: true}) : Change`
 Customized method for delete and paste at range.  The method memics the default `change.deleteAtRange`, but tries to keep valid bad tables.
 Optional option `normalize` is for enable/disable normalization after deleteAtRange
 
-### `changes.removeTable(value:Value, {shouldSnapshotSelection: true}) => Change`
+##### `changes.removeTable(value:Value, {shouldSnapshotSelection: true}) => Change`
 remove bad-table if the focus is in the table
 
-### `changes.removeRow(value:Value, {shouldSnapshotSelection: true}) => Change`
+##### `changes.removeRow(value:Value, {shouldSnapshotSelection: true}) => Change`
 remove bad-table-row if the focus is in the row;
 
-### `changes.removeRow(value:Value, {shouldSnapshotSelection: true}) => Change`
+##### `changes.removeRow(value:Value, {shouldSnapshotSelection: true}) => Change`
 remove bad-table-row if the focus is in the row;
 
 ## Rules
 Rules for rules-combinator for customizing copy/paste logic with other plugins
 
-### `rules.getFragmentAtRange: Array< ( getFragmentAtRange: (Node, Range) => Document, node: Node, range: Range, next: () => Document ): Document >`
+##### `rules.getFragmentAtRange: Array< ( getFragmentAtRange: (Node, Range) => Document, node: Node, range: Range, next: () => Document ): Document >`
 - `getFragmentAtRange` for the root function entry, used for node or range change;  You can see example of usage at `lib/rules/getFragmentAtRange/ifStartInCell`
 - `node`, `range`: node and range
 - `next` evaluate the following rules
 for binding rules, see example at `lib/rules/getFragmentAtRange/index`
 
-### `rules.deleteAtRange: Array< ( deleteAtRange: (Change, Range) => Change, node: Node, range: Range, next: () => Change ): Change >`
+##### `rules.deleteAtRange: Array< ( deleteAtRange: (Change, Range) => Change, node: Node, range: Range, next: () => Change ): Change >`
 - `deleteAtRange` for the root function entry, used for range change;  You can see example of usage at `lib/rules/deleteAtRange/ifStartInCell`
 - `change`, `range`: change and range
 - `next` evaluate the following rules
