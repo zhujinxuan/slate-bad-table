@@ -1,0 +1,33 @@
+document:
+  nodes:
+    - object: block
+      type: bad-table
+      nodes: 
+      - object: block
+        type: bad-table-row
+        nodes:
+        - object: block
+          type: bad-table-cell
+          nodes:
+          - object: block
+            type: image
+            isVoid: true
+            nodes: 
+            - object: text
+              leaves:
+              - text: " "
+          - object: block
+            type: paragraph
+            nodes:
+              - object: text
+                leaves: 
+                - text: "cat is cute"
+        - object: block
+          type: bad-table-cell
+          nodes:
+          - object: block
+            type: paragraph
+            nodes:
+              - object: text
+                leaves:
+                - text: "cat is cute"
