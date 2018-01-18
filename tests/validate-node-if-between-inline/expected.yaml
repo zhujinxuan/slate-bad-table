@@ -1,0 +1,40 @@
+document:
+  nodes:
+  - object: block
+    type: table
+    nodes: 
+    - object: block
+      type: table_row
+      nodes:
+      - object: block
+        type: table_cell
+        nodes:
+        - object: text
+          leaves:
+          - text: "Ebony is the cutest cat in the world"
+      - object: block
+        type: table_cell
+        nodes:
+        - object: text
+          leaves: 
+          - text: "Cat is cute"
+        - object: inline
+          type: link
+          nodes: 
+          - object: text
+            leaves: 
+            - text: "Ebony is cute"
+        - object: text
+          leaves: 
+          - text: "\n"
+        - object: inline
+          type: link
+          nodes: 
+          - object: text
+            leaves: 
+            - text: "Ebony is cute"
+        - object: text
+          leaves: 
+          - text: "Cat is very cute"
+
+            

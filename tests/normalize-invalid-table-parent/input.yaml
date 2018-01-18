@@ -19,6 +19,9 @@ document:
             type: bad-table-cell
             nodes:
             - object: block
+              type: image
+              isVoid: true
+            - object: block
               type: paragraph
               nodes:
                 - object: text
