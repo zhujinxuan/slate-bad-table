@@ -44,17 +44,26 @@ document:
                   nodes: 
                     - object: text
                       leaves: 
-                        - text: "Second Bad Cell"
+                        - text: ""
     - object: block
       type: paragraph
-      nodes: 
+      nodes:
         - object: text
-          leaves: 
-          - text: ""
+          leaves:
+            - text: ""
     - object: block
-      type: paragraph
-      key: '_focus_'
-      nodes: 
-        - object: text
-          leaves: 
-          - text: "able2: Second Bad Cell"
+      type: bad-table
+      nodes:
+        - object: block
+          type: bad-table-row
+          nodes:
+            - object: block
+              type: bad-table-cell
+              nodes:
+                - object: block
+                  type: paragraph
+                  key: '_focus_'
+                  nodes: 
+                    - object: text
+                      leaves: 
+                      - text: ""
