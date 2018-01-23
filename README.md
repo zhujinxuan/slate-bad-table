@@ -37,17 +37,17 @@ Return true if selection starts and ends both outside any bad table. (Notice: it
 
 
 ## Changes
-##### `changes.removeFragmentAtRange(change: Change, range: Range, {normalize: true}) : Change`
+##### `changes.deleteAtRange(change: Change, range: Range, {normalize: true}) : Change`
 Customized method for delete and paste at range.  The method memics the default `change.deleteAtRange`, but tries to keep valid bad tables.
 Optional option `normalize` is for enable/disable normalization after deleteAtRange
 
-##### `changes.removeTable(value:Value, {shouldSnapshotSelection: true}) => Change`
+##### `changes.removeTable(value:Value, {snapshot: true}) => Change`
 remove bad-table if the focus is in the table
 
-##### `changes.removeRow(value:Value, {shouldSnapshotSelection: true}) => Change`
+##### `changes.removeRow(value:Value, {snapshot: true}) => Change`
 remove bad-table-row if the focus is in the row;
 
-##### `changes.removeRow(value:Value, {shouldSnapshotSelection: true}) => Change`
+##### `changes.removeRow(value:Value, {snapshot: true}) => Change`
 remove bad-table-row if the focus is in the row;
 
 ## Rules
