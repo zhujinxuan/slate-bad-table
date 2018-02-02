@@ -61,8 +61,5 @@
   ],
   "dependencies": {
     "is-hotkey": "^0.1.1"
-  },
-  "optionalDependencies": {
-    "slate-bind-copy-paste": "../slate-bind-copy-paste"
   }
 }
