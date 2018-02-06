@@ -8,7 +8,7 @@
   "peerDependencies": {
     "immutable": "^3.8.1",
     "slate": "^0.32.0",
-    "slate-bind-copy-paste": "^0.0.2"
+    "slate-bind-copy-paste": "^0.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -49,6 +49,7 @@
     "build:flow": "flow-copy-source -v ./lib/ ./dist/",
     "prepublishOnly": "npm run build:dist && npm run build:flow",
     "lint": "./node_modules/.bin/eslint ./",
+    "flow": "flow",
     "build-example": "browserify ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ env react stage-0 ] ]",
     "watch-example": "watchify ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ env react stage-0 ] ] -v",
     "serve-example": "http-server ./example/ -p 8080",

@@ -4,5 +4,4 @@ Logic sequence
 3. default nodeAsText
 3. start at beginning of a table
 4. end at end of a table
-5. split
 6. default nodeAsNode

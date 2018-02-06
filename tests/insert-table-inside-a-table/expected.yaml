@@ -3,6 +3,7 @@ document:
     - object: block
       type: table
       nodes:
+
         - object: block
           type: table_row
           nodes:
@@ -11,20 +12,20 @@ document:
             nodes:
             - object: text
               leaves: 
-                - text: ""
+                - text: "Col 0, Row 0"
           - object: block
             type: table_cell
             key: '_anchor_'
             nodes:
             - object: text
               leaves: 
-                - text: "Col 1, Row 0"
+                - text: "Cl 1, Row 1"
           - object: block
             type: table_cell
             nodes:
             - object: text
               leaves: 
-                - text: "Col 2, Row 0"
+                - text: "Col 2, Row 1"
         - object: block
           type: table_row
           nodes:
@@ -33,18 +34,19 @@ document:
             nodes:
             - object: text
               leaves: 
-                - text: "Col 0, Row 1"
+                - text: "Col 0, Row 2"
           - object: block
             type: table_cell
             key: '_focus_'
             nodes:
             - object: text
               leaves: 
-                - text: ""
+                - text: "Cool 1, Row 3"
           - object: block
             type: table_cell
             nodes:
             - object: text
               leaves: 
-                - text: ""
+                - text: "Col 2, Row 3"
+
 

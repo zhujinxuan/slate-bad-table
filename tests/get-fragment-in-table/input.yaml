@@ -25,6 +25,9 @@ document:
             - object: text
               leaves: 
                 - text: "Col 2, Row 0"
+        - object: block
+          type: table_row
+          nodes:
           - object: block
             type: table_cell
             nodes:
