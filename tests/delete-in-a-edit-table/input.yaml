@@ -1,121 +1,112 @@
 document:
   nodes:
   - object: block
-    type: bad-table
+    type: table
     nodes:
-    - object: block
-      type: bad-table-row
-      nodes: 
       - object: block
-        type: bad-table-cell
+        type: table_row
         nodes:
-        - object: block
-          type: table
-          nodes:
-            - object: block
-              type: table_row
+          - object: block
+            type: table_cell
+            key: '_anchor_'
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 0, Row 0"
+            - object: inline
+              type: emoji
+              isVoid: true
               nodes:
-                - object: block
-                  type: table_cell
-                  key: '_anchor_'
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 0, Row 0"
-                  - object: inline
-                    type: emoji
-                    isVoid: true
-                    nodes:
-                    - object: text
-                      leaves:
-                      - text: " "
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 1, Row 0"
-                  - object: inline
-                    type: emoji
-                    isVoid: true
-                    nodes:
-                      - object: text
-                        leaves:
-                        - text: " "
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 2, Row 0"
-            - object: block
-              type: table_row
+              - object: text
+                leaves:
+                - text: " "
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 1, Row 0"
+            - object: inline
+              type: emoji
+              isVoid: true
               nodes:
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 0, Row 1"
-                  - object: inline
-                    type: emoji
-                    isVoid: true
-                    nodes:
-                    - object: text
-                      leaves:
-                      - text: " "
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 1, Row 1"
-                  - object: inline
-                    type: emoji
-                    isVoid: true
-                    nodes:
-                    - object: text
-                      leaves:
-                      - text: " "
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 2, Row 1"
-            - object: block
-              type: table_row
+                - object: text
+                  leaves:
+                  - text: " "
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 2, Row 0"
+      - object: block
+        type: table_row
+        nodes:
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 0, Row 1"
+            - object: inline
+              type: emoji
+              isVoid: true
               nodes:
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 0, Row 2"
-                  - object: inline
-                    type: emoji
-                    isVoid: true
-                    nodes:
-                    - object: text
-                      leaves:
-                      - text: " "
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 1, Row 2"
-                  - object: inline
-                    type: emoji
-                    isVoid: true
-                    nodes:
-                    - object: text
-                      leaves:
-                      - text: " "
-                - object: block
-                  type: table_cell
-                  key: '_focus_'
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: "Col 2, Row 2"
+              - object: text
+                leaves:
+                - text: " "
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 1, Row 1"
+            - object: inline
+              type: emoji
+              isVoid: true
+              nodes:
+              - object: text
+                leaves:
+                - text: " "
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 2, Row 1"
+      - object: block
+        type: table_row
+        nodes:
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 0, Row 2"
+            - object: inline
+              type: emoji
+              isVoid: true
+              nodes:
+              - object: text
+                leaves:
+                - text: " "
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 1, Row 2"
+            - object: inline
+              type: emoji
+              isVoid: true
+              nodes:
+              - object: text
+                leaves:
+                - text: " "
+          - object: block
+            type: table_cell
+            key: '_focus_'
+            nodes:
+            - object: text
+              leaves: 
+              - text: "Col 2, Row 2"

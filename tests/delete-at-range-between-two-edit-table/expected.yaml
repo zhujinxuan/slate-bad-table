@@ -1,36 +1,27 @@
 document:
   nodes:
   - object: block
-    type: bad-table
+    type: table
     nodes:
-    - object: block
-      type: bad-table-row
-      nodes: 
       - object: block
-        type: bad-table-cell
+        type: table_row
         nodes:
-        - object: block
-          type: table
-          nodes:
-            - object: block
-              type: table_row
-              nodes:
-                - object: block
-                  type: table_cell
-                  key: '_anchor_'
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: ""
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: ""
-                - object: block
-                  type: table_cell
-                  nodes:
-                  - object: text
-                    leaves: 
-                    - text: ""
+          - object: block
+            type: table_cell
+            key: '_anchor_'
+            nodes:
+            - object: text
+              leaves: 
+              - text: ""
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: ""
+          - object: block
+            type: table_cell
+            nodes:
+            - object: text
+              leaves: 
+              - text: ""

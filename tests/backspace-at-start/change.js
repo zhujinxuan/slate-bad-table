@@ -1,18 +1,64 @@
-import expect from 'expect';
+/** @jsx h */
+import h from '../h';
 
-export default function(plugin, change) {
-    const { value } = change;
-    const focusBlock = value.document.getDescendant('_focus_');
-
-    change.collapseToStartOf(focusBlock);
-
-    const operationResult = plugin.onKeyDown(
-        { key: 'backspace', which: 8 },
-        change
-    );
-
-    expect(!!operationResult).toEqual(true);
-    expect(change.value.startBlock.key).toEqual('_focus_after_');
-
+export function runChange(plugin, change) {
+    plugin.onKeyDown({ key: 'Backspace', which: 8 }, change);
     return change;
 }
+export const input = (
+    <value>
+        <document>
+            <badTable>
+                <badRow>
+                    <badCell>
+                        <paragraph>Col 0, Row 0</paragraph>
+                    </badCell>
+                    <badCell>
+                        <paragraph>Col 1, Row 0</paragraph>
+                    </badCell>
+                </badRow>
+
+                <badRow>
+                    <badCell>
+                        <paragraph>
+                            <cursor />
+                            Col 0, Row 1
+                        </paragraph>
+                    </badCell>
+                    <badCell>
+                        <paragraph>Col 1, Row 2</paragraph>
+                    </badCell>
+                </badRow>
+            </badTable>
+        </document>
+    </value>
+);
+
+export const output = (
+    <value>
+        <document>
+            <badTable>
+                <badRow>
+                    <badCell>
+                        <paragraph>Col 0, Row 0</paragraph>
+                    </badCell>
+                    <badCell>
+                        <paragraph>
+                            Col 1, Row 0
+                            <cursor />
+                        </paragraph>
+                    </badCell>
+                </badRow>
+
+                <badRow>
+                    <badCell>
+                        <paragraph>Col 0, Row 1</paragraph>
+                    </badCell>
+                    <badCell>
+                        <paragraph>Col 1, Row 2</paragraph>
+                    </badCell>
+                </badRow>
+            </badTable>
+        </document>
+    </value>
+);

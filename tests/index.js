@@ -1,21 +1,15 @@
-import expect from 'expect';
 import fs from 'fs';
+import assert from 'assert';
 import path from 'path';
-import { Schema, Value } from 'slate';
-import readMetadata from 'read-metadata';
-
+import { Schema } from 'slate';
 import EditTable from '../lib';
 
-const PLUGIN = EditTable();
+const plugin = EditTable();
 const SCHEMA = Schema.create({
-    plugins: [PLUGIN]
+    plugins: [plugin]
 });
 
-function deserializeValue(json) {
-    return Value.fromJSON({ ...json, schema: SCHEMA }, { normalize: false });
-}
-
-describe('slate-edit-table', () => {
+describe('slate-bad-table', () => {
     const tests = fs.readdirSync(__dirname);
 
     tests.forEach(test => {
@@ -23,22 +17,19 @@ describe('slate-edit-table', () => {
 
         it(test, () => {
             const dir = path.resolve(__dirname, test);
-            const input = readMetadata.sync(path.resolve(dir, 'input.yaml'));
-            const expectedPath = path.resolve(dir, 'expected.yaml');
-            const expected =
-                fs.existsSync(expectedPath) && readMetadata.sync(expectedPath);
 
             // eslint-disable-next-line
-            const runChange = require(path.resolve(dir, 'change.js')).default;
+            const {input, output, runChange} = require(path.resolve(dir, 'change.js'))
 
-            const valueInput = deserializeValue(input);
 
-            const newChange = runChange(PLUGIN, valueInput.change());
+            const newChange = runChange(
+                plugin,
+                input.change().setValue({ schema: SCHEMA })
+            );
 
-            if (expected) {
-                const newDocJSon = newChange.value.toJSON();
-                expect(newDocJSon).toEqual(deserializeValue(expected).toJSON());
-            }
+            const opts = { preserveSelection: true, preserveData: true };
+            const newDocJSon = newChange.value.toJSON(opts);
+            assert.deepEqual(newDocJSon, output.toJSON(opts));
         });
     });
 });

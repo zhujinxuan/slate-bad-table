@@ -7,10 +7,10 @@
   "main": "./dist/index.js",
   "peerDependencies": {
     "immutable": "^3.8.1",
-    "slate": "^0.32.0",
-    "slate-bind-copy-paste": "^0.0.6"
+    "slate": "^0.32.0"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
@@ -27,7 +27,6 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.5.1",
-    "expect": "^1.20.2",
     "flow-bin": "^0.57.3",
     "flow-copy-source": "^1.2.1",
     "gh-pages": "^0.11.0",
@@ -40,7 +39,7 @@
     "read-metadata": "^1.0.0",
     "slate": "^0.32.0",
     "slate-edit-table": "0.14.2",
-    "slate-hyperscript": "^0.5.0",
+    "slate-hyperscript": "^0.5.4",
     "slate-prop-types": "^0.4.17",
     "slate-react": "^0.11.0",
     "watchify": "^3.7.0"
@@ -62,6 +61,7 @@
     "slate"
   ],
   "dependencies": {
-    "is-hotkey": "^0.1.1"
+    "is-hotkey": "^0.1.1",
+    "slate-bind-copy-paste": "^0.0.13"
   }
 }

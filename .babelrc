@@ -1,8 +1,13 @@
 {
-    "presets": [
-        "flow",
-        "env",
-        "stage-0",
-        "react"
-    ]
+  "presets": [
+    "env",
+    "flow",
+    "react",
+    "stage-0"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["transform-runtime"]
+    }
+  }
 }
