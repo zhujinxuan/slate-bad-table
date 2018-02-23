@@ -95,12 +95,12 @@ export const output = (
                         <anchor />
                     </td>
                     <td />
-                    <td />
+                    <td>
+                        <focus />
+                    </td>
                 </tr>
             </table>
-            <paragraph>
-                <focus />
-            </paragraph>
+            <paragraph />
         </document>
     </value>
 );

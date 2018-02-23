@@ -1,21 +1,62 @@
-// import expect from 'expect';
-import { Range } from 'slate';
+/** @jsx h */
+import { Value } from 'slate';
+import h from '../h';
 
-export default function(plugin, change) {
-    const { document } = change.value;
-    const anchorBlock = document.getDescendant('_anchor_');
-    const focusBlock = document.getDescendant('_focus_');
-    const range = Range.create()
-        .moveAnchorToStartOf(anchorBlock)
-        .moveFocusToStartOf(focusBlock);
-    const fragment = plugin.utils.getFragmentAtRange(document, range);
-    document.nodes.forEach((block, index) => {
-        change.removeNodeByKey(block.key);
-    });
-    fragment.nodes.forEach((block, index) => {
-        const key = change.value.document.key;
-        change.insertNodeByKey(key, index, block);
-    });
-
-    return change;
+export function runChange(plugin, change) {
+    const fragment = plugin.utils.getFragmentAtRange(
+        change.value.document,
+        change.value.selection
+    );
+    return Value.fromJSON({ document: fragment }).change();
 }
+export const input = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Col0, Row0</td>
+                    <td>
+                        Col1, <anchor />Row0
+                    </td>
+                    <td>Col2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Col0, Row1</td>
+                    <td>Col1, Row1</td>
+                    <td>Col2, Row1</td>
+                </tr>
+                <tr>
+                    <td>
+                        Col0, <focus />Row2
+                    </td>
+                    <td>Col1, Row2</td>
+                    <td>Col2, Row2</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const output = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td />
+                    <td>Row0</td>
+                    <td>Col2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Col0, Row1</td>
+                    <td>Col1, Row1</td>
+                    <td>Col2, Row1</td>
+                </tr>
+                <tr>
+                    <td>Col0, </td>
+                    <td />
+                    <td />
+                </tr>
+            </table>
+        </document>
+    </value>
+);

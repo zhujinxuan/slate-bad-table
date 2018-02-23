@@ -1,10 +1,54 @@
-// import expect from 'expect';
+/** @jsx h */
+import h from '../h';
 
-export default function(plugin, change) {
-    const { document } = change.value;
-    const anchorBlock = document.getDescendant('_anchor_');
-    const focusBlock = document.getDescendant('_focus_');
-    change.collapseToStartOf(anchorBlock).extendToEndOf(focusBlock);
+export function runChange(plugin, change) {
     plugin.changes.deleteAtRange(change, change.value.selection);
     return change;
 }
+
+export const input = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>
+                        <anchor />Col0, Row0
+                    </td>
+                    <td>Col1, Row0</td>
+                    <td>Col2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Col0, Row1</td>
+                    <td>Col1, Row1</td>
+                    <td>Col2, Row1</td>
+                </tr>
+                <tr>
+                    <td>Col0, Row2</td>
+                    <td>Col1, Row2</td>
+                    <td>
+                        Col2, Row2<focus />
+                    </td>
+                </tr>
+            </table>
+            <paragraph />
+        </document>
+    </value>
+);
+export const output = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>
+                        <anchor />
+                    </td>
+                    <td />
+                    <td>
+                        <focus />
+                    </td>
+                </tr>
+            </table>
+            <paragraph />
+        </document>
+    </value>
+);

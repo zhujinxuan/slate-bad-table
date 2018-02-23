@@ -1,7 +1,7 @@
 {
   "name": "slate-bad-table",
   "description": "An ugly solution for nested table in Slate",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "Apache-2.0",
   "repository": "git@github.com:zhujinxuan/slate-bad-table.git",
   "main": "./dist/index.js",
@@ -62,6 +62,6 @@
   ],
   "dependencies": {
     "is-hotkey": "^0.1.1",
-    "slate-bind-copy-paste": "^0.0.13"
+    "slate-bind-copy-paste": "^0.0.15"
   }
 }

@@ -1,25 +1,135 @@
-// import expect from 'expect';
-import { Range } from 'slate';
+/** @jsx h */
+import h from '../h';
 
-export default function(plugin, change) {
-    const { document } = change.value;
-    const fragmentAnchorBlock = document.getDescendant('_get_fragment_anchor_');
-    const fragmentFocusBlock = document.getDescendant('_get_fragment_focus_');
-    const range = Range.create()
-        .moveAnchorToStartOf(fragmentAnchorBlock)
-        .moveAnchor(2)
-        .moveFocusToStartOf(fragmentFocusBlock)
-        .moveFocus(2);
-    const fragment = plugin.utils.getFragmentAtRange(document, range);
+const fragment = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Col 0, Row1</td>
+                    <td>Col 1, Row1</td>
+                    <td>Col 2, Row1</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row2</td>
+                    <td>Col 1, Row2</td>
+                    <td>Col 2, Row2</td>
+                </tr>
+            </table>
 
-    const anchorBlock = document.getDescendant('_anchor_');
-    const focusBlock = document.getDescendant('_focus_');
-    const nextRange = range
-        .moveAnchorToStartOf(anchorBlock)
-        .moveAnchor(1)
-        .moveFocusToStartOf(focusBlock)
-        .moveFocus(1);
-    plugin.changes.insertFragmentAtRange(change, nextRange, fragment);
+            <table>
+                <tr>
+                    <td>Table 2:Col 0, Row0</td>
+                    <td>Table 2:Col 1, Row0</td>
+                    <td>Table 2:Col 2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Table 2:Col 0, Row1</td>
+                    <td>Table 2:Col 1, Row1</td>
+                    <td>Table 2:Col 2, Row1</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+)
+    .change()
+    .normalize().value.document;
 
+export function runChange(plugin, change) {
+    plugin.changes.insertFragmentAtRange(
+        change,
+        change.value.selection,
+        fragment
+    );
     return change;
 }
+
+export const input = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Input Table 1: Col 0, Row0</td>
+                    <td>Input Table 1: Col 1, Row0</td>
+                    <td>Input Table 1: Col 2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Input Table 1: Col 0, Row1</td>
+                    <td>
+                        Input Table 1:<anchor />Col 1, Row1
+                    </td>
+                    <td>Input Table 1: Col 2, Row1</td>
+                </tr>
+                <tr>
+                    <td>Input Table 1: Col 0, Row2</td>
+                    <td>Input Table 1: Col 1, Row2</td>
+                    <td>Input Table 1: Col 2, Row2</td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>Input Table 2:Col 0, Row0</td>
+                    <td>Input Table 2:Col 1, Row0</td>
+                    <td>Input Table 2:Col 2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Input Table 2:Col 0, Row1</td>
+                    <td>
+                        Input Table 2:<focus />Col 1, Row1
+                    </td>
+                    <td>Input Table 2:Col 2, Row1</td>
+                </tr>
+                <tr>
+                    <td>Input Table 2:Col 0, Row2</td>
+                    <td>Input Table 2:Col 1, Row2</td>
+                    <td>Input Table 2:Col 2, Row2</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const output = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Input Table 1: Col 0, Row0</td>
+                    <td>Input Table 1: Col 1, Row0</td>
+                    <td>Input Table 1: Col 2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Input Table 1: Col 0, Row1</td>
+                    <td>Input Table 1:Col 1, Row1</td>
+                    <td>Col 2, Row1</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row2</td>
+                    <td>Col 1, Row2</td>
+                    <td>Col 2, Row2</td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>Table 2:Col 0, Row0</td>
+                    <td>Table 2:Col 1, Row0</td>
+                    <td>Table 2:Col 2, Row0</td>
+                </tr>
+                <tr>
+                    <td>Table 2:Col 0, Row1</td>
+                    <td>
+                        Table 2:Col 1, Row1<cursor />Col 1, Row1
+                    </td>
+                    <td>Input Table 2:Col 2, Row1</td>
+                </tr>
+                <tr>
+                    <td>Input Table 2:Col 0, Row2</td>
+                    <td>Input Table 2:Col 1, Row2</td>
+                    <td>Input Table 2:Col 2, Row2</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);

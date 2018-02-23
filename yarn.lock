@@ -4318,9 +4318,9 @@ slate-base64-serializer@^0.2.23:
   dependencies:
     isomorphic-base64 "^1.0.2"
 
-slate-bind-copy-paste@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/slate-bind-copy-paste/-/slate-bind-copy-paste-0.0.13.tgz#0316abf4ac8ece95ad915a576a41963e07478e60"
+slate-bind-copy-paste@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/slate-bind-copy-paste/-/slate-bind-copy-paste-0.0.15.tgz#3b705059a407dda94a993b171a2d7013f750852c"
 
 slate-dev-logger@^0.1.39:
   version "0.1.39"
@@ -4331,8 +4331,8 @@ slate-edit-table@0.14.2:
   resolved "https://registry.yarnpkg.com/slate-edit-table/-/slate-edit-table-0.14.2.tgz#7a9e9e8f13148b6f4889a3303cfeddb5c1dcfa10"
 
 slate-hyperscript@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.5.4.tgz#4d0a4af5dba1734882d7d1486cf0f4050c734099"
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.5.6.tgz#a721f2ea297d775788b07015b7c735b5701cfb1b"
   dependencies:
     is-empty "^1.0.0"
     is-plain-object "^2.0.4"
@@ -4370,13 +4370,13 @@ slate-react@^0.11.0:
     slate-plain-serializer "^0.5.4"
     slate-prop-types "^0.4.21"
 
-slate-schema-violations@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.2.tgz#45f2e6ed2e77c98925bb1e159bf24cad9dc7f8ac"
+slate-schema-violations@^0.1.3:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.4.tgz#f87ad4091f72c66edf32f418a33d80e5e87ad5e8"
 
 slate@^0.32.0:
-  version "0.32.4"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.32.4.tgz#dcc971d1cf4e4b7ac158b5bac9c39c9915805435"
+  version "0.32.5"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.32.5.tgz#5386c75dec1e5b87648189c9fbb4294cec623ff0"
   dependencies:
     debug "^2.3.2"
     direction "^0.1.5"
@@ -4385,7 +4385,7 @@ slate@^0.32.0:
     is-plain-object "^2.0.4"
     lodash "^4.17.4"
     slate-dev-logger "^0.1.39"
-    slate-schema-violations "^0.1.2"
+    slate-schema-violations "^0.1.3"
     type-of "^2.0.1"
 
 slice-ansi@1.0.0:

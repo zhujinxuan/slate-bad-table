@@ -1,11 +1,38 @@
-import expect from 'expect';
+/** @jsx h */
+import h from '../h';
 
-export default function(plugin, change) {
-    const cursorBlock = change.value.document.getDescendant('_cursor_');
-    change.moveToRangeOf(cursorBlock);
-
+export function runChange(plugin, change) {
     plugin.changes.removeTable(change);
-    expect(change.value.startBlock.key).toEqual('_cursor_after_');
-    expect(change.value.startOffset).toEqual(0);
     return change;
 }
+
+export const input = (
+    <value>
+        <document>
+            <badTable>
+                <badRow>
+                    <badCell>
+                        <image />
+                        <paragraph>
+                            <cursor />1
+                        </paragraph>
+                    </badCell>
+                    <badCell>
+                        <paragraph>2</paragraph>
+                    </badCell>
+                </badRow>
+            </badTable>
+            <paragraph>After</paragraph>
+        </document>
+    </value>
+);
+
+export const output = (
+    <value>
+        <document>
+            <paragraph>
+                <cursor />After
+            </paragraph>
+        </document>
+    </value>
+);

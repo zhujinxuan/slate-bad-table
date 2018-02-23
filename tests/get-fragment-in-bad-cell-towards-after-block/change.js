@@ -1,21 +1,50 @@
-// import expect from 'expect';
-import { Range } from 'slate';
+/** @jsx h */
+import { Value } from 'slate';
+import h from '../h';
 
-export default function(plugin, change) {
-    const { document } = change.value;
-    const anchorBlock = document.getDescendant('_anchor_');
-    const focusBlock = document.getDescendant('_focus_');
-    const range = Range.create()
-        .moveAnchorToStartOf(anchorBlock)
-        .moveFocusToEndOf(focusBlock);
-    const fragment = plugin.utils.getFragmentAtRange(document, range);
-    document.nodes.forEach((block, index) => {
-        change.removeNodeByKey(block.key);
-    });
-    fragment.nodes.forEach((block, index) => {
-        const key = change.value.document.key;
-        change.insertNodeByKey(key, index, block);
-    });
-
-    return change;
+export function runChange(plugin, change) {
+    const fragment = plugin.utils.getFragmentAtRange(
+        change.value.document,
+        change.value.selection
+    );
+    return Value.fromJSON({ document: fragment }).change();
 }
+export const input = (
+    <value>
+        <document>
+            <paragraph>Before</paragraph>
+            <badTable>
+                <badRow>
+                    <badCell>
+                        <paragraph>Before Text of First Bad Cell</paragraph>
+                        <image key="g1">
+                            {' '}
+                            <anchor />
+                        </image>
+                        <paragraph key="g2">
+                            After Text of First Bad Cell
+                        </paragraph>
+                    </badCell>
+                    <badCell>
+                        <image key="g3" />
+                        <paragraph key="g4">Second Bad Cell</paragraph>
+                    </badCell>
+                </badRow>
+            </badTable>
+            <paragraph key="g5">
+                After<focus /> Bad Cell
+            </paragraph>
+        </document>
+    </value>
+);
+export const output = (
+    <value>
+        <document>
+            <image key="g1" />
+            <paragraph key="g2">After Text of First Bad Cell</paragraph>
+            <image key="g3" />
+            <paragraph key="g4">Second Bad Cell</paragraph>
+            <paragraph key="g5">After</paragraph>
+        </document>
+    </value>
+);
