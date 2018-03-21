@@ -2,7 +2,7 @@ import fs from 'fs';
 import assert from 'assert';
 import path from 'path';
 import { Schema } from 'slate';
-import EditTable from '../lib';
+import EditTable from '../src';
 
 const plugin = EditTable();
 const SCHEMA = Schema.create({
