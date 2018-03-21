@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "repository": "git@github.com:zhujinxuan/slate-bad-table.git",
   "main": "lib/slate-bad-table.js",
-  "main": "lib/slate-bad-table.es.js",
+  "module": "lib/slate-bad-table.es.js",
   "devDependencies": {
     "assert": "^1.4.1",
     "babel-cli": "^6.26.0",
