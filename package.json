@@ -1,7 +1,7 @@
 {
   "name": "slate-bad-table",
   "description": "An ugly solution for nested table in Slate",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "license": "Apache-2.0",
   "repository": "git@github.com:zhujinxuan/slate-bad-table.git",
   "main": "lib/slate-bad-table.js",
@@ -76,8 +76,8 @@
   ],
   "dependencies": {
     "immutable": "^3.8.1",
-    "slate": ">0.32.0 <0.34.0",
     "is-hotkey": "^0.1.1",
+    "slate": ">0.32.0 <0.34.0",
     "slate-bind-copy-paste": "^0.1.1"
   }
 }
