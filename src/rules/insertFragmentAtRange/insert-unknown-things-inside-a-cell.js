@@ -41,7 +41,7 @@ function insertUnknownInSameCell(opts: Options): typeRule {
         change.splitDescendantsByKey(child.key, startKey, startOffset, {
             normalize: false
         });
-        const insertIndex = startCell.indexOf(child) + 1;
+        const insertIndex = startCell.nodes.indexOf(child) + 1;
         let insertNodes = List.of();
         fragment.nodes.forEach(n => {
             insertNodes = insertNodes.concat(getFirstBlock(n).nodes);

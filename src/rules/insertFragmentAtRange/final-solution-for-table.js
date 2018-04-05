@@ -1,47 +1,34 @@
 // @flow
-import EditTablePosition from '../../utils/EditTablePosition';
 import type Options from '../../options';
 import { type typeRule } from './type';
 
 function finalSolutionToJumpOutOfATable(opts: Options): typeRule {
     return (rootInsert, change, range, fragment, insertOptions, next) => {
-        if (fragment.nodes.size === 0) {
-            return next(insertOptions);
-        }
-
         const { document } = change.value;
         const { startKey, endKey } = range;
-        const startCell = document.getClosestBlock(startKey);
+        const startBlock = document.getClosestBlock(startKey);
+        if (startBlock.type !== opts.typeCell) return next(insertOptions);
+        const endBlock = document.getClosestBlock(endKey);
+        if (endBlock.type !== opts.typeCell) {
+            return rootInsert(
+                change,
+                range.collapseToEnd(),
+                fragment,
+                insertOptions
+            );
+        }
 
-        if (startCell.type !== opts.typeCell) {
-            return next(opts);
-        }
-        const startPosition = EditTablePosition.create({
-            node: change.value.document,
-            range: range.collapseToStart(),
-            opts
-        });
-        const nextBlock = document.getNextBlock(startPosition.table.key);
-        if (!nextBlock) {
-            fragment.nodes.forEach((n, index) => {
-                change.insertNodeByKey(
-                    document.key,
-                    document.nodes.size + index,
-                    n,
-                    { normalize: false }
-                );
-            });
-            return change;
-        }
-        range = range.moveAnchorToStartOf(nextBlock);
-        insertOptions = insertOptions.merge({
-            firstNodeAsText: false,
-            lastNodeAsText: false
-        });
-        if (startPosition.table.getDescendant(endKey)) {
-            range = range.moveToStartOf(nextBlock);
-        }
-        return rootInsert(change, range, fragment, insertOptions);
+        const table = document.getAncestors(startBlock.key).get(-2);
+        const indexFix = table.nodes.first().getDescendant(startKey) ? 0 : 1;
+
+        const parent = document.getParent(table.key);
+        const index = parent.nodes.indexOf(table) + indexFix;
+        fragment.nodes.forEach((n, ii) =>
+            change.insertNodeByKey(parent.key, index + ii, n, {
+                normalize: false
+            })
+        );
+        return change;
     };
 }
 export default finalSolutionToJumpOutOfATable;

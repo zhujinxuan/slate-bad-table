@@ -5640,10 +5640,11 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-bind-copy-paste@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/slate-bind-copy-paste/-/slate-bind-copy-paste-0.1.1.tgz#f0f2817fd89c65fdd3e3595aae7ae551ced84c1f"
+slate-bind-copy-paste@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/slate-bind-copy-paste/-/slate-bind-copy-paste-0.1.2.tgz#c736f4373e973a1de297a9aefa32408e4dd9a638"
   dependencies:
+    debug "^3.1.0"
     immutable "^3.8.2"
     slate ">0.32.4 <0.34.0"
 

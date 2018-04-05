@@ -9,6 +9,7 @@ import appendTableAtRangeStart from './append-table-at-range-start';
 import insertTableInsideATable from './insert-table-inside-a-table';
 import insertUnknownInDifferentCells from './insert-unknown-things-in-different-cell';
 import insertUnknownInsideACell from './insert-unknown-things-inside-a-cell';
+import finalTableSolution from './final-solution-for-table';
 
 import { deleteAtRange } from '../deleteAtRange/index';
 
@@ -25,6 +26,7 @@ function makeRules(opts: Options): Array<typeRule> {
         appendTableAtRangeEnd(opts),
         insertUnknownInDifferentCells(opts),
         insertUnknownInsideACell(opts),
+        finalTableSolution(opts),
         firstParagraphAsText,
         lastParagraphAsText,
         nodesAsBlocks

@@ -1,6 +1,4 @@
 // @flow
-import isSameWidth from './utils/isSameWidth';
-import EditTablePosition from '../../utils/EditTablePosition';
 import type Options from '../../options';
 import { type typeRule } from './type';
 
@@ -13,6 +11,7 @@ function insertUnknownInDifferentCells(opts: Options): typeRule {
         const { startKey, endKey } = range;
         const startCell = document.getClosestBlock(startKey);
         const endCell = document.getClosestBlock(endKey);
+
         if (startCell === endCell) {
             return next(insertOptions);
         }
@@ -23,45 +22,6 @@ function insertUnknownInDifferentCells(opts: Options): typeRule {
         ) {
             return next(insertOptions);
         }
-
-        const startPosition = EditTablePosition.create({
-            node: change.value.document,
-            range: range.collapseToStart(),
-            opts
-        });
-
-        const endPosition = EditTablePosition.create({
-            node: change.value.document,
-            range: range.collapseToEnd(),
-            opts
-        });
-
-        const firstTable = fragment.nodes.first();
-        const lastTable = fragment.nodes.last();
-        if (
-            firstTable.type === opts.typeCell &&
-            startCell.type === opts.typeCell
-        ) {
-            if (
-                startPosition.isAtEndOfTable() &&
-                isSameWidth(startPosition.table, firstTable)
-            ) {
-                return next(insertOptions);
-            }
-        }
-
-        if (
-            lastTable.type === opts.typeCell &&
-            endCell.type === opts.typeCell
-        ) {
-            if (
-                endPosition.isAtStartOfTable() &&
-                isSameWidth(endPosition.table, lastTable)
-            ) {
-                return next(insertOptions);
-            }
-        }
-
         return rootInsert(
             change,
             range.collapseToStart(),

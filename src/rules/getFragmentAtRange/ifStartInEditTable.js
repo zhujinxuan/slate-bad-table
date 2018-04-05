@@ -7,10 +7,7 @@ function ifStartInCell(opts: Options): typeRule {
     return (rootGetFragment, node, range, getOpts, next) => {
         const { startKey, endKey, startOffset } = range;
         const { startAncestors } = getOpts;
-        const cellAncestorIndex = startAncestors.findLastIndex(
-            n => n.object === 'block'
-        );
-        const cell = startAncestors.get(cellAncestorIndex);
+        const cell = node.getClosestBlock(startKey);
         if (!cell || cell.type !== opts.typeCell) {
             return next(getOpts);
         }
@@ -18,7 +15,7 @@ function ifStartInCell(opts: Options): typeRule {
             return next(getOpts);
         }
 
-        const row = startAncestors.get(cellAncestorIndex - 1);
+        const row = node.getParent(cell.key);
         if (cell === row.nodes.first()) {
             return next(getOpts);
         }
