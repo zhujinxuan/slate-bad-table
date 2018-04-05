@@ -78,6 +78,6 @@
     "immutable": "^3.8.1",
     "is-hotkey": "^0.1.1",
     "slate": ">0.32.0 <0.34.0",
-    "slate-bind-copy-paste": "^0.1.2"
+    "slate-bind-copy-paste": "^0.1.4"
   }
 }
