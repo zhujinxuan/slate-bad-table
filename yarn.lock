@@ -3221,7 +3221,7 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-immutable@^3.8.1, immutable@^3.8.2:
+immutable@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 
@@ -3460,10 +3460,6 @@ is-glob@^4.0.0:
   resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-4.0.0.tgz#9521c76845cc2610a85203ddf080a958c2ffabc0"
   dependencies:
     is-extglob "^2.1.1"
-
-is-hotkey@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/is-hotkey/-/is-hotkey-0.1.1.tgz#b279a2fd108391be9aa93c6cb317f50357da549a"
 
 is-module@^1.0.0:
   version "1.0.0"
@@ -5640,33 +5636,25 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-bind-copy-paste@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/slate-bind-copy-paste/-/slate-bind-copy-paste-0.1.4.tgz#a47344ae08ff159ede6e5d4467a82bf13320563e"
-  dependencies:
-    debug "^3.1.0"
-    immutable "^3.8.2"
-    slate ">0.32.4 <0.34.0"
-
 slate-dev-logger@^0.1.39:
   version "0.1.39"
   resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.39.tgz#744a69b85034244713e6de51483af5713c345af4"
 
-slate-hyperscript@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.5.6.tgz#a721f2ea297d775788b07015b7c735b5701cfb1b"
+slate-hyperscript@^0.5.10:
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.5.10.tgz#1b06086a9b51d4c9bb47258f6a8c7610a2f53d31"
   dependencies:
     is-empty "^1.0.0"
     is-plain-object "^2.0.4"
     slate-dev-logger "^0.1.39"
 
-slate-schema-violations@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.4.tgz#f87ad4091f72c66edf32f418a33d80e5e87ad5e8"
+slate-schema-violations@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.8.tgz#b6bfbcc4defaa4971a96bf2d324c5b67fb4a4e20"
 
-"slate@>0.32.0 <0.34.0", "slate@>0.32.4 <0.34.0":
-  version "0.33.0"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.33.0.tgz#6a4e084aa3a55dc5b09bce1b7037f284396b9160"
+slate@^0.33.4:
+  version "0.33.4"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.33.4.tgz#8f39000a7a0fb1ec04b211c3e264e45677dfd9d8"
   dependencies:
     debug "^2.3.2"
     direction "^0.1.5"
@@ -5675,7 +5663,7 @@ slate-schema-violations@^0.1.4:
     is-plain-object "^2.0.4"
     lodash "^4.17.4"
     slate-dev-logger "^0.1.39"
-    slate-schema-violations "^0.1.4"
+    slate-schema-violations "^0.1.8"
     type-of "^2.0.1"
 
 slice-ansi@1.0.0:
