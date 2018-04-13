@@ -4,7 +4,7 @@ import createSchema from './schema/index';
 import createUtils from './utils/index';
 import createChanges from './changes/index';
 import Options, { type OptionsFormat } from './options';
-import createRulesPatch from './rules/index';
+import createRulesPatch, { type typeRules } from './rules/index';
 import createValidateNode from './validateNode/index';
 import createOnKeyDown from './onKeyDown/index';
 
@@ -12,7 +12,7 @@ type typePlugins = {
     schema: Object,
     utils: Object,
     onKeyDown: (*, Change) => Change | void,
-    rules: Object,
+    rules: typeRules,
     changes: Object,
     validateNode: Node => (Change => Change) | void
 };
@@ -35,3 +35,4 @@ function createBadTablePlugin(pluginOpts: OptionsFormat): typePlugins {
 }
 
 export default createBadTablePlugin;
+export type { typeRules };

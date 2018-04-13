@@ -9,6 +9,12 @@ import { type typeRule as typeInsertRule } from './insertFragmentAtRange/type';
 import { type typeRule as typeDeleteRule } from './deleteAtRange/type';
 import { type typeRule as typeGetRule } from './getFragmentAtRange/type';
 
+export type typeRules = {
+    getFragmentAtRange: Array<typeGetRule>,
+    deleteAtRange: Array<typeDeleteRule>,
+    insertFragmentAtRange: Array<typeInsertRule>
+};
+
 type typePatch = {
     utils: {
         getFragmentAtRange: (Node, Range) => Document
@@ -17,11 +23,7 @@ type typePatch = {
         deleteAtRange: (Change, Range, Object) => Change,
         insertFragmentAtRange: (Change, Range, Document, Object) => Change
     },
-    rules: {
-        getFragmentAtRange: Array<typeGetRule>,
-        deleteAtRange: Array<typeDeleteRule>,
-        insertFragmentAtRange: Array<typeInsertRule>
-    }
+    rules: typeRules
 };
 
 function createPatch(opts: Options): typePatch {
