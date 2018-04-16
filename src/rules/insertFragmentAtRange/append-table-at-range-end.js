@@ -38,7 +38,7 @@ function appendTableAtRangeEnd(opts: Options): typeRule {
             return next(insertOptions);
         }
 
-        if (!endPosition.isFirstRow()) {
+        if (!endPosition.isInTable() || !endPosition.isFirstRow()) {
             return next(insertOptions);
         }
 

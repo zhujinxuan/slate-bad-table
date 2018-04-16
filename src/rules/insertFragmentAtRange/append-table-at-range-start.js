@@ -31,10 +31,12 @@ function appendTableAtRangeStart(opts: Options): typeRule {
             range: range.collapseToEnd(),
             opts
         });
-        if (startPosition.isSameTable(endPosition)) {
-            return next(insertOptions);
-        }
-        if (!startPosition.isLastRow()) {
+
+        if (
+            !startPosition.isInTable() ||
+            startPosition.isSameTable(endPosition) ||
+            !startPosition.isLastRow()
+        ) {
             return next(insertOptions);
         }
 

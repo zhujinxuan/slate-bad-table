@@ -9,10 +9,11 @@ type typeAttrs = {
     range: Range,
     opts: Options
 };
+const invalidBlock = Block.create('invalid-block');
 class TablePosition extends Record({
-    table: Block.create('invalid-block'),
-    row: Block.create('invalid-block'),
-    cell: Block.create('invalid-block'),
+    table: invalidBlock,
+    row: invalidBlock,
+    cell: invalidBlock,
     rowIndex: -1,
     cellIndex: -1,
     ancestors: List.of(),
@@ -33,12 +34,12 @@ class TablePosition extends Record({
             throw new Error('attrs.opts must have types for TablePosition');
         }
 
-        const cell = node.getClosestBlock(range.startKey);
+        const { startKey } = range;
+        const cell = node.getClosestBlock(startKey);
 
         if (cell.type !== opts.typeCell) {
             return new TablePosition({ range });
         }
-        const { startKey } = range;
         const ancestors = node.getAncestors(startKey);
         const cellAncestorIndex = ancestors.indexOf(cell);
         const table = ancestors.get(cellAncestorIndex - 2);
@@ -54,6 +55,10 @@ class TablePosition extends Record({
             ancestors,
             range
         });
+    }
+
+    isInTable(): boolean {
+        return this.table.type !== 'invalid-block';
     }
 
     isSameTable(position2: TablePosition): boolean {

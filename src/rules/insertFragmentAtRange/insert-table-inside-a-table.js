@@ -1,4 +1,5 @@
 // @flow
+import { type Node } from 'slate';
 import isSameWidth from './utils/isSameWidth';
 import pasteSingleRow from './utils/pasteSingleRow';
 import EditTablePosition from '../../utils/EditTablePosition';
@@ -30,11 +31,15 @@ function insertTableInsideTable(opts: Options): typeRule {
             opts
         });
 
+        if (!startPosition.isInTable() || !endPosition.isInTable()) {
+            return next(insertOptions);
+        }
+
         if (!startPosition.isSameTable(endPosition)) {
             return next(insertOptions);
         }
 
-        const table = startPosition.table;
+        const { table } = startPosition;
 
         if (!isSameWidth(table, fragmentTable)) {
             return next(insertOptions);
@@ -56,7 +61,7 @@ function insertTableInsideTable(opts: Options): typeRule {
         }
 
         let middleRows = fragmentTable.nodes;
-        let nextTable = table;
+        let nextTable: Node = table;
         if (firstNodeAsText) {
             const fragmentRow = middleRows.first();
             middleRows = middleRows.shift();
