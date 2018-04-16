@@ -15,11 +15,11 @@ function insertUnknownInSameCell(opts: Options): typeRule {
         const startCell = document.getClosestBlock(startKey);
         const endCell = document.getClosestBlock(endKey);
         if (startCell !== endCell) {
-            return next(opts);
+            return next(insertOptions);
         }
 
         if (startCell.type !== opts.typeCell) {
-            return next(opts);
+            return next(insertOptions);
         }
         if (!opts.allowSoftBreak) {
             if (fragment.nodes.size > 1) {
