@@ -4,13 +4,13 @@ import type Options from '../../options';
 
 function ifEndInCell(opts: Options): typeRule {
     return (rootGetFragment, node, range, getOpts, next) => {
-        const cell = getOpts.endAncestors.findLast(
-            n => n.type === opts.typeBadCell
-        );
+        const { startKey, endKey } = range;
+        const cell = node.getClosest(endKey, x => x.type === opts.typeBadCell);
+
         if (!cell) {
             return next(getOpts);
         }
-        if (getOpts.startAncestors.includes(cell)) {
+        if (cell.getDescendant(startKey)) {
             return next(getOpts);
         }
         const prevBlock = node.getPreviousBlock(cell.key);

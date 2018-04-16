@@ -4,13 +4,15 @@ import type Options from '../../options';
 
 function ifStartInCell(opts: Options): typeRule {
     return (rootGetFragment, node, range, getOpts, next) => {
-        const cell = getOpts.startAncestors.findLast(
+        const { startKey, endKey } = range;
+        const cell = node.getClosest(
+            startKey,
             x => x.type === opts.typeBadCell
         );
         if (!cell) {
             return next(getOpts);
         }
-        if (getOpts.endAncestors.includes(cell)) {
+        if (cell.hasDescendant(endKey)) {
             return next(getOpts);
         }
         const nextBlock = node.getNextBlock(cell.key);

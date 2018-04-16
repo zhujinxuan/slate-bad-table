@@ -6,7 +6,6 @@ import type Options from '../../options';
 function ifStartInCell(opts: Options): typeRule {
     return (rootGetFragment, node, range, getOpts, next) => {
         const { startKey, endKey, startOffset } = range;
-        const { startAncestors } = getOpts;
         const cell = node.getClosestBlock(startKey);
         if (!cell || cell.type !== opts.typeCell) {
             return next(getOpts);
@@ -34,13 +33,11 @@ function ifStartInCell(opts: Options): typeRule {
                     });
                 }
                 let newCell;
-                let child = startAncestors.last().getChild(startKey);
-                child = child.set(
-                    'characters',
-                    child.characters.skip(startOffset)
-                );
+                let child = node.getDescendant(startKey);
+                child = child.removeText(0, startOffset);
+                const ancestors = node.getAncestors(startKey);
 
-                startAncestors.findLast(parent => {
+                ancestors.findLast(parent => {
                     const childIndex = parent.nodes.findIndex(
                         n => n.key === child.key
                     );

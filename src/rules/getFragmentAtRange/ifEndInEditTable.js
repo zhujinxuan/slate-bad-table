@@ -3,14 +3,10 @@ import { Block, Text } from 'slate';
 import { type typeRule } from './type';
 import type Options from '../../options';
 
-function ifStartInCell(opts: Options): typeRule {
+function ifEndInCell(opts: Options): typeRule {
     return (rootGetFragment, node, range, getOpts, next) => {
         const { startKey, endKey, endOffset } = range;
-        const { endAncestors } = getOpts;
-        const cellAncestorIndex = endAncestors.findLastIndex(
-            n => n.object === 'block'
-        );
-        const cell = endAncestors.get(cellAncestorIndex);
+        const cell = node.getClosestBlock(endKey);
 
         if (!cell || cell.type !== opts.typeCell) {
             return next(getOpts);
@@ -20,7 +16,7 @@ function ifStartInCell(opts: Options): typeRule {
             return next(getOpts);
         }
 
-        const row = endAncestors.get(cellAncestorIndex - 1);
+        const row = node.getParent(cell.key);
         if (cell === row.nodes.last()) {
             return next(getOpts);
         }
@@ -40,13 +36,11 @@ function ifStartInCell(opts: Options): typeRule {
                     });
                 }
                 let newCell;
-                let child = endAncestors.last().getChild(endKey);
-                child = child.set(
-                    'characters',
-                    child.characters.take(endOffset)
-                );
+                let child = node.getDescendant(endKey);
+                child = child.removeText(endOffset, child.text.length);
+                const ancestors = node.getAncestors(endKey);
 
-                endAncestors.findLast(parent => {
+                ancestors.findLast(parent => {
                     const childIndex = parent.nodes.findIndex(
                         n => n.key === child.key
                     );
@@ -70,4 +64,4 @@ function ifStartInCell(opts: Options): typeRule {
         return rootGetFragment(node, range, getOpts);
     };
 }
-export default ifStartInCell;
+export default ifEndInCell;

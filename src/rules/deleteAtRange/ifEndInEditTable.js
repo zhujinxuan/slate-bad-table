@@ -5,20 +5,18 @@ import { type typeRule } from './type';
 function ifEndInEditTable(opts: Options): typeRule {
     return (rootDelete, change, range, removeOptions, next) => {
         const { document } = change.value;
+        const { startKey, endKey } = range;
 
-        const ancestors = removeOptions.endAncestors;
-        const cellAncestorIndex = ancestors.findLastIndex(
-            n => n.object === 'block'
-        );
-
-        const cell = ancestors.get(cellAncestorIndex);
+        const cell = document.getClosestBlock(endKey);
         if (!cell || cell.type !== opts.typeCell) {
             return next(removeOptions);
         }
+        const ancestors = document.getAncestors(endKey);
+        const cellAncestorIndex = ancestors.indexOf(cell);
 
         const table = ancestors.get(cellAncestorIndex - 2);
-        const { startAncestors } = removeOptions;
-        if (startAncestors.includes(table)) {
+
+        if (table.hasDescendant(startKey)) {
             return next(removeOptions);
         }
 

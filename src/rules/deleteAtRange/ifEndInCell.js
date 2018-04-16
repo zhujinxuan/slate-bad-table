@@ -5,13 +5,15 @@ import type Options from '../../options';
 function ifEndInCell(opts: Options): typeRule {
     return (rootDelete, change, range, removeOptions, next) => {
         const { document } = change.value;
-        const cell = removeOptions.endAncestors.findLast(
+        const { startKey, endKey } = range;
+        const cell = document.getClosest(
+            endKey,
             x => x.type === opts.typeBadCell
         );
         if (!cell) {
             return next(removeOptions);
         }
-        if (removeOptions.startAncestors.includes(cell)) {
+        if (cell.hasDescendant(startKey)) {
             return next(removeOptions);
         }
         const prevBlock = document.getPreviousBlock(cell.key);

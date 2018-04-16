@@ -4,18 +4,19 @@ import { type typeRule } from './type';
 
 function ifInSameCell(opts: Options): typeRule {
     return (rootDelete, change, range, removeOptions, next) => {
-        const { endAncestors, startAncestors } = removeOptions;
-        const endCell = endAncestors.findLast(x => x.type === opts.typeBadCell);
-        const startCell = startAncestors.findLast(
+        const { startKey, endKey } = range;
+        const { document } = change.value;
+        const startCell = document.getClosest(
+            startKey,
             x => x.type === opts.typeBadCell
         );
-        if (!startCell || endCell !== startCell) {
+        if (!startCell || !startCell.getDescendant(endKey)) {
             return next(removeOptions);
         }
         if (!range.collapseToStart().isAtStartOf(startCell)) {
             return next(removeOptions);
         }
-        if (!range.collapseToEnd().isAtEndOf(endCell)) {
+        if (!range.collapseToEnd().isAtEndOf(startCell)) {
             return next(removeOptions);
         }
         const { deleteStartText, deleteEndText } = removeOptions;

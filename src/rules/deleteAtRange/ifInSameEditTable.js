@@ -6,7 +6,6 @@ import { type typeRule } from './type';
 
 function ifInSameEditTable(opts: Options): typeRule {
     return (rootDelete, change, range, removeOptions, next) => {
-        const { startAncestors, endAncestors } = removeOptions;
         const { document } = change.value;
         const { startKey, endKey, startOffset, endOffset } = range;
 
@@ -15,9 +14,12 @@ function ifInSameEditTable(opts: Options): typeRule {
             return next(removeOptions);
         }
 
-        const table = startAncestors.findLast(n => n.type === opts.typeTable);
+        const table = document.getClosest(
+            startKey,
+            x => x.type === opts.typeTable
+        );
         const endCell = document.getClosestBlock(endKey);
-        if (endAncestors.indexOf(table) === -1) {
+        if (!table || !table.hasDescendant(endCell.key)) {
             return next(removeOptions);
         }
 
@@ -29,8 +31,14 @@ function ifInSameEditTable(opts: Options): typeRule {
             return next(removeOptions);
         }
 
-        const startRow = startAncestors.findLast(n => n.type === opts.typeRow);
-        const endRow = endAncestors.findLast(n => n.type === opts.typeRow);
+        const startRow = document.getClosest(
+            startKey,
+            n => n.type === opts.typeRow
+        );
+        const endRow = document.getClosest(
+            endKey,
+            n => n.type === opts.typeRow
+        );
         const endText = document.getDescendant(endKey);
 
         // Including multi-rows

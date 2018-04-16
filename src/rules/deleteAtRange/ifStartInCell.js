@@ -5,12 +5,15 @@ import { type typeRule } from './type';
 function ifStartInCell(opts: Options): typeRule {
     return (rootDelete, change, range, removeOptions, next) => {
         const { document } = change.value;
-        const { startAncestors, endAncestors } = removeOptions;
-        const cell = startAncestors.findLast(x => x.type === opts.typeBadCell);
+        const { startKey, endKey } = range;
+        const cell = document.getClosest(
+            startKey,
+            x => x.type === opts.typeBadCell
+        );
         if (!cell) {
             return next(removeOptions);
         }
-        if (endAncestors.includes(cell)) {
+        if (cell.hasDescendant(endKey)) {
             return next(removeOptions);
         }
         const nextBlock = document.getNextBlock(cell.key);

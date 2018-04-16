@@ -4,19 +4,19 @@ import type Options from '../../options';
 
 function isInSameCell(opts: Options): typeRule {
     return (rootGetFragment, node, range, getOpts, next) => {
-        const { startAncestors, endAncestors } = getOpts;
-        const startCell = startAncestors.findLast(
+        const { startKey, endKey } = range;
+        const cell = node.getClosest(
+            startKey,
             x => x.type === opts.typeBadCell
         );
-        const endCell = endAncestors.findLast(x => x.type === opts.typeBadCell);
 
-        if (!startCell || startCell !== endCell) {
+        if (!cell || !cell.getDescendant(endKey)) {
             return next(getOpts);
         }
-        if (startCell === node) {
+        if (cell === node) {
             return next(getOpts);
         }
-        return rootGetFragment(startCell, range, getOpts);
+        return rootGetFragment(cell, range, getOpts);
     };
 }
 export default isInSameCell;

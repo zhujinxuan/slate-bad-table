@@ -5,19 +5,17 @@ import { type typeRule } from './type';
 function ifStartInEditCell(opts: Options): typeRule {
     return (rootDelete, change, range, removeOptions, next) => {
         const { document } = change.value;
+        const { startKey, endKey } = range;
 
-        const ancestors = removeOptions.startAncestors;
-        const cellAncestorIndex = ancestors.findLastIndex(
-            n => n.object === 'object'
-        );
-        const cell = ancestors.get(cellAncestorIndex);
+        const cell = document.getClosestBlock(startKey);
         if (!cell || cell.type !== opts.typeCell) {
             return next(removeOptions);
         }
+        const ancestors = document.getAncestors(startKey);
+        const cellAncestorIndex = ancestors.indexOf(cell);
 
         const table = ancestors.get(cellAncestorIndex - 2);
-        const { endAncestors } = removeOptions;
-        if (endAncestors.includes(table)) {
+        if (table.hasDescendant(endKey)) {
             return next(removeOptions);
         }
 
